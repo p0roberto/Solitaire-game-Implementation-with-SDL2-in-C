@@ -24,5 +24,6 @@ void zerar_listas();
 void insert(lista* l, carta *c);
 void atualizar_listas();
 carta* delete(lista *L, int indice);
+carta* at(lista* l, int indice);
 
 #endif

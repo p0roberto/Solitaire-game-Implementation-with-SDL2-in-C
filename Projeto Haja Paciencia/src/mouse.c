@@ -27,27 +27,20 @@ void atualizar_mouse(){
 }
 
 void handle_click(){
-    // checando se esta clicando em um dos sete montes
+    // checando se esta clicando em um dos sete monte
     for(int i = 0; i < TAM_P; i++){
-        node* at = listas[i].last;
-        bool adicionar = false;
+        node* at = listas[i].first;
         for(int j = 0; j < listas[i].tamanho && at != NULL; j++){
             if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){
-                adicionar = true;   
-            }
-            if(adicionar){
-                at = at->proximo;
-                carta* algo = delete(&listas[i], j);
-                j--;
-                insert(&mouse_list, algo);
+                int qtd = listas[i].tamanho - j;
+                while(qtd--){
+                    insert(&mouse_list, delete(&listas[i], j));
+                }
+                i = TAM_P;
                 break;
             }
-
-            j++;
-            at = at->anterior;
+            at = at->proximo;
         }
-
-        if(adicionar) break;
     }
 
 

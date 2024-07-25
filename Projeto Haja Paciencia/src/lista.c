@@ -36,9 +36,7 @@ void insert(lista* l, carta *c){ // Inserir carta na lista
     c->rect.y = l->base.y;
 }
 
-void atualizar_listas(){ // Renderiza as listas constantemente
-    int divisao = 4;
-    
+void atualizar_listas(){ // Renderiza as listas constantemente    
     for(int i = 0; i < TAM_P; i++){
         if(listas[i].tamanho == 0) continue;
         node* at = listas[i].first;
@@ -98,4 +96,23 @@ carta* delete(lista *L, int indice){ // Remove carta da lista
     carta* c = at->c;
     free(at);
     return c;
+}
+
+carta* at(lista* l, int indice){
+    if(!l){
+        printf("at error: invalid list\n");
+        return NULL;
+    }
+
+    if(indice >= l->tamanho || indice < 0){
+        printf("at error: invalid index\n");
+        return NULL;
+    }
+
+    node* at = l->first;
+    for(int i = 0; i < indice; i++){
+        at = at->proximo;
+    }
+
+    return at->c;
 }

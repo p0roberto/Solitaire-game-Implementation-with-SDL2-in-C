@@ -6,7 +6,7 @@ void iniciar_cartas(){ // Inicializa o vetor de cartas de forma ordenada
         for(int j = 1; j <= MAX; j++){
             baralho[index].naipe = i; // i_esimo naipe
             baralho[index].numero = j; // j_esimo numero
-            baralho[index].virada = !true; // inicializa todas de costas
+            baralho[index].virada = true; // inicializa todas de costas
             baralho[index].rect.w = largura_carta; // dimensoes
             baralho[index].rect.h = altura_carta; // dimensoes
             index++;
@@ -86,13 +86,11 @@ void distribuir_cartas(){ // Distribui as cartas iniciais, utilizando o baralho 
     for(int i = 0; i < TAM_P; i++){
         for(int j = 0; j <= i; j++){
             insert(&listas[i], &baralho[carta_atual]);
-            baralho[carta_atual-(i>0)].virada = true;
             carta_atual++;
         }
     }
     // As cartas restantes são colocadas no deck de compras
     for( ; carta_atual < TOTAL_CARTAS; carta_atual++){
         push(&deck_pilha[0], &baralho[carta_atual]);
-        baralho[carta_atual].virada = true;
     }
 }

@@ -15,7 +15,7 @@ const int divisao = 4; //fracao da carta que fica visivel quando é tampada por 
 typedef struct{
     int numero; // A = 1, J = 11, Q = 12, K = 13, 
     int naipe;
-    bool virada; //  se for true, virada pra baixo, se for false, virada pra cima
+    bool virada; //  se for true, virada pra baixo,  se for false, virada pra cima
     SDL_Rect rect; // Coordenadas
 } carta;
 
@@ -32,13 +32,13 @@ SDL_Texture* texture_cartas_background;
 
 char imagens_cartas_path[NAIPES][MAX+1][100] = { // Matriz de strings, que armazena o nome do jpg das cartas
     //LINHA 0: COPAS
-    ""," imagens/cartas/A_copas.png", "imagens/cartas/1_copas.png", "imagens/cartas/2_copas.png", "imagens/cartas/3_copas.png", "imagens/cartas/4_copas.png", "imagens/cartas/5_copas.png", "imagens/cartas/6_copas.png", "imagens/cartas/7_copas.png", "imagens/cartas/8_copas.png", "imagens/cartas/9_copas.png", "1imagens/cartas/0_copas.png", "imagens/cartas/J_copas.png", "imagens/cartas/Q_copas.png", "imagens/cartas/K_copas.png",
+    {"", "imagens/cartas/A_copas.png", "imagens/cartas/2_copas.png", "imagens/cartas/3_copas.png", "imagens/cartas/4_copas.png", "imagens/cartas/5_copas.png", "imagens/cartas/6_copas.png", "imagens/cartas/7_copas.png", "imagens/cartas/8_copas.png", "imagens/cartas/9_copas.png", "imagens/cartas/10_copas.png", "imagens/cartas/J_copas.png", "imagens/cartas/Q_copas.png", "imagens/cartas/K_copas.png"},
     //LINHA 1: PAUS
-    "", "imagens/cartas/A_paus.png", "imagens/cartas/1_paus.png", "imagens/cartas/2_paus.png", "imagens/cartas/3_paus.png", "imagens/cartas/4_paus.png", "imagens/cartas/5_paus.png", "imagens/cartas/6_paus.png", "imagens/cartas/7_paus.png", "imagens/cartas/8_paus.png", "imagens/cartas/9_paus.png", "1imagens/cartas/0_paus.png", "imagens/cartas/J_paus.png", "imagens/cartas/Q_paus.png", "imagens/cartas/K_paus.png",
+    {"", "imagens/cartas/A_paus.png", "imagens/cartas/2_paus.png", "imagens/cartas/3_paus.png", "imagens/cartas/4_paus.png", "imagens/cartas/5_paus.png", "imagens/cartas/6_paus.png", "imagens/cartas/7_paus.png", "imagens/cartas/8_paus.png", "imagens/cartas/9_paus.png", "imagens/cartas/10_paus.png", "imagens/cartas/J_paus.png", "imagens/cartas/Q_paus.png", "imagens/cartas/K_paus.png"},
     //LINHA 2: OUROS
-    "", "imagens/cartas/A_ouros.png", "imagens/cartas/1_ouros.png", "imagens/cartas/2_ouros.png", "imagens/cartas/3_ouros.png", "imagens/cartas/4_ouros.png", "imagens/cartas/5_ouros.png", "imagens/cartas/6_ouros.png", "imagens/cartas/7_ouros.png", "imagens/cartas/8_ouros.png", "imagens/cartas/9_ouros.png", "1imagens/cartas/0_ouros.png", "imagens/cartas/J_ouros.png", "imagens/cartas/Q_ouros.png", "imagens/cartas/K_ouros.png",
+    {"", "imagens/cartas/A_ouros.png", "imagens/cartas/2_ouros.png", "imagens/cartas/3_ouros.png", "imagens/cartas/4_ouros.png", "imagens/cartas/5_ouros.png", "imagens/cartas/6_ouros.png", "imagens/cartas/7_ouros.png", "imagens/cartas/8_ouros.png", "imagens/cartas/9_ouros.png", "imagens/cartas/10_ouros.png", "imagens/cartas/J_ouros.png", "imagens/cartas/Q_ouros.png", "imagens/cartas/K_ouros.png"},
     //LINHA 3: ESPADA
-    "", "imagens/cartas/A_espadas.png", "imagens/cartas/1_espadas.png", "imagens/cartas/2_espadas.png", "imagens/cartas/3_espadas.png", "imagens/cartas/4_espadas.png", "imagens/cartas/5_espadas.png", "imagens/cartas/6_espadas.png", "imagens/cartas/7_espadas.png", "imagens/cartas/8_espadas.png", "imagens/cartas/9_espadas.png", "1imagens/cartas/0_espadas.png", "imagens/cartas/J_espadas.png", "imagens/cartas/Q_espadas.png", "imagens/cartas/K_espadas.png"
+    {"", "imagens/cartas/A_espadas.png", "imagens/cartas/2_espadas.png", "imagens/cartas/3_espadas.png", "imagens/cartas/4_espadas.png", "imagens/cartas/5_espadas.png", "imagens/cartas/6_espadas.png", "imagens/cartas/7_espadas.png", "imagens/cartas/8_espadas.png", "imagens/cartas/9_espadas.png", "imagens/cartas/10_espadas.png", "imagens/cartas/J_espadas.png", "imagens/cartas/Q_espadas.png", "imagens/cartas/K_espadas.png"}
 };
 
 // Variaveis do tipo rect, que armazenam as coordenadas
