@@ -47,10 +47,10 @@ SDL_Rect deck_rect[2];
 SDL_Rect montes[7];
 
 char naipes_background_path[NAIPES][70] = { // Vetor de strings, que armazena o nome do jpg dos background dos naipes
-    "imagens/fundos/copas_background.png",
-    "imagens/fundos/paus_background.png",
-    "imagens/fundos/ouros_background.png",
-    "imagens/fundos/espadas_background.png"
+    "imagens/fundos/copas_sprite.png",
+    "imagens/fundos/paus_sprite.png",
+    "imagens/fundos/ouros_sprite.png",
+    "imagens/fundos/espada_sprite.png"
 };
 
 carta baralho[TOTAL_CARTAS]; // Vetor que armazena as cartas
