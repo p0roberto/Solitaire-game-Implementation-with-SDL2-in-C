@@ -19,7 +19,6 @@ SDL_Texture* background_texture = NULL;
 
 SDL_Rect background_rect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
-
 // Cabeçario de funções
 bool InitializeSDL();
 void colorir_rect(SDL_Rect* rect, cor c);

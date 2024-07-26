@@ -8,12 +8,12 @@ void zerar_mouse(){
 }
 
 void atualizar_mouse(){
-    SDL_GetMouseState(&mouseX, &mouseY);
+    SDL_GetMouseState(&mouseX, &mouseY); // Atualiza as coordenadas do cursor
     mouse_list.base.x = mouseX;
     mouse_list.base.y = mouseY;
 
     int renderizadas = 0;
-    for(node* at = mouse_list.first; at; at = at->proximo){
+    for(node* at = mouse_list.first; at; at = at->proximo){ // Renderiza as cartas da lista do mouse
         at->c->rect.x = mouseX - largura_carta/2;
 
         int variacao_y = renderizadas * altura_carta / divisao;
@@ -27,14 +27,14 @@ void atualizar_mouse(){
 }
 
 void handle_click(){
-    // checando se esta clicando em um dos sete monte
-    for(int i = 0; i < TAM_P; i++){
-        node* at = listas[i].first;
-        for(int j = 0; j < listas[i].tamanho && at != NULL; j++){
-            if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){
-                int qtd = listas[i].tamanho - j;
+    // checando se esta clicando em um dos sete montes
+    for(int i = 0; i < TAM_P; i++){ // Percorre os montes
+        node* at = listas[i].first; // auxiliar
+        for(int j = 0; j < listas[i].tamanho && at != NULL; j++){ // Percorre as cartas no monte
+            if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){ // Clicou em uma carta e ela está virada?
+                int qtd = listas[i].tamanho - j; // Quantidade de cartas que deseja mover
                 while(qtd--){
-                    insert(&mouse_list, delete(&listas[i], j));
+                    insert(&mouse_list, delete(&listas[i], j)); // Adiciona as cartas selecionadas na lista do mouse
                 }
                 i = TAM_P;
                 break;

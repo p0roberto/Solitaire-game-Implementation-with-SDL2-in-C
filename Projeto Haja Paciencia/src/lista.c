@@ -36,22 +36,23 @@ void insert(lista* l, carta *c){ // Inserir carta na lista
     c->rect.y = l->base.y;
 }
 
-void atualizar_listas(){ // Renderiza as listas constantemente    
+void atualizar_listas(){ // Percorre as listas, e as renderiza constantemente    
     for(int i = 0; i < TAM_P; i++){
         if(listas[i].tamanho == 0) continue;
-        node* at = listas[i].first;
+        node* at = listas[i].first; // auxiliar, para percorrer as cartas na lista
 
         int renderizadas = 0;
-        while(at){
-            int naipe = at->c->naipe;
+        while(at){ // Enquanto houver cartas na lista
+            int naipe = at->c->naipe; // informações da carta atual
             int numero = at->c->numero;
 
             int variacao_y = renderizadas * altura_carta / divisao;
-            at->c->rect.y = listas[i].base.y + variacao_y;
+            at->c->rect.y = listas[i].base.y + variacao_y; // Varia a altura da carta
 
             if(at == listas[i].last) at->c->virada = false;
+            // Carrega a textura da carta atual
             SDL_Texture* t = (at->c->virada) ? texture_cartas_background : texture_cartas[naipe][numero];
-            SDL_RenderCopy(renderer, t, NULL, &at->c->rect);
+            SDL_RenderCopy(renderer, t, NULL, &at->c->rect); // Renderiza a carta
             
             at = at->proximo; 
             renderizadas++;

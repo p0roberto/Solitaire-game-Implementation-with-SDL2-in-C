@@ -1,6 +1,6 @@
 #include "geral.h"
 
-void iniciar_cartas(){ // Inicializa o vetor de cartas de forma ordenada
+void iniciar_cartas(){ // Inicializa as cartas no vetor
     int index = 0;
     for(int i = 0; i < NAIPES; i++){
         for(int j = 1; j <= MAX; j++){

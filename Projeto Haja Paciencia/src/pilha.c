@@ -52,7 +52,7 @@ carta* pop(pilha *p){ // Remove uma carta do topo da pilha
 bool swap_deck = false;
 
 void atualizar_pilhas(){ // Função que renderiza as pilhas constantemente    
-    //checando se clicou no primeiro deck
+    // Checando se clicou no deck de compras
     if(is_clicking_on_rect( &deck_pilha[0].base)){
         if(deck_pilha[0].tamanho) swap_deck = true;
         else{
