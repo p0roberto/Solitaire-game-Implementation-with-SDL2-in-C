@@ -26,7 +26,7 @@ void atualizar_mouse(){
     }
 }
 
-void handle_first_click(){
+void handle_first_click(){ // Fazer retornar a carta first da lista do mouse
     if(mouse_list.tamanho) return;
 
     // checando se esta clicando em um dos sete monte
@@ -82,7 +82,7 @@ void handle_first_click(){
     origem = -1;
 }
 
-void handle_second_click(){
+void handle_second_click(){ // Fazer retornar a carta last da lista/pilha clicada
     if(mouse_list.tamanho == 0) return;
     if(origem == -1){
         printf("origem = -1\n");
@@ -145,10 +145,10 @@ void handle_second_click(){
 }
 
 void handle_click(){
-    if(!mouse_list.tamanho){
+    if(!mouse_list.tamanho){ // Se não houver cartas na lista do mouse, é o primeiro clique
         handle_first_click();
     }
-    else{
+    else{ // Se houver cartas na lista do mouse, é o segundo clique
         handle_second_click();
     }    
 }

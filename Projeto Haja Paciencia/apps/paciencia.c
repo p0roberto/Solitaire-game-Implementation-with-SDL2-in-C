@@ -68,11 +68,9 @@ int main(){
 
     load_game(); // Carrega a tela do jogo inicial
     
-    SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50};
+    SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50}; // botao de reiniciar, exemplo
 
-    int paulo_w = 200;
-    int paulo_h = 200;
-    SDL_Rect paulo = {(SCREEN_WIDTH - paulo_w) /2 , (SCREEN_HEIGHT - paulo_h)/2, paulo_w, paulo_h};
+    SDL_Rect paulo = {(SCREEN_WIDTH - 200) /2 , (SCREEN_HEIGHT - 200)/2, 200, 200}; // tela de vitória, exemplo
 
     while(!quit){ // Loop principal
         while(SDL_PollEvent(&event) != 0){ // Se houver interação
@@ -85,16 +83,16 @@ int main(){
         }
 
         update_all(); // Renderiza
-        if(win_check()){
+        
+        if(win_check()){ // Se o usuário vencer, apresenta a tela de vitória
             colorir_rect(&paulo, verde);
-            if(is_clicking_on_rect(&paulo)){
+            if(is_clicking_on_rect(&paulo)){ // Se o usuário  clicar na tela de vitória, reinicia o jogo
                 load_game();
             }
         }
 
-
-        colorir_rect(&roberto, vermelho);
-        if(is_clicking_on_rect(&roberto)){
+        colorir_rect(&roberto, vermelho); 
+        if(is_clicking_on_rect(&roberto)){ // Se o usuário clicar no botão de reiniciar, reinicia o jogo
             load_game();
         }
       

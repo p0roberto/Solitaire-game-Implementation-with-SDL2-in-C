@@ -5,7 +5,15 @@ bool verifica(){
     return false;
 }
 
-bool win_check(){
+/*bool verifica_2(carta *c1, carta *c2){
+    // verifica local carta 1 e local carta 2;
+    // verifica se é possível pela matriz de adjacencias;
+    // se carta 2 for das pilhas de naipe, verificar se carta 1 condiz com naipe e sequencia
+    // se carta 2 for das sete listas, verificar se carta 1 condiz com a sequencia e cor
+    // return true
+}*/
+
+bool win_check(){ // Verifica se o usuário venceu
     int soma = 0;
 
     for(int i = 0; i < NAIPES; i++){
