@@ -49,20 +49,9 @@ carta* pop(pilha *p){ // Remove uma carta do topo da pilha
     return c; // Retorna a carta removida, para ser usada como push em outra pilha
 }
 
-bool swap_deck = false;
-
 void atualizar_pilhas(){ // Função que renderiza as pilhas constantemente    
-    // Checando se clicou no deck de compras
-    if(is_clicking_on_rect( &deck_pilha[0].base)){
-        if(deck_pilha[0].tamanho) swap_deck = true;
-        else{
-            while(deck_pilha[1].tamanho){   
-                push(&deck_pilha[0], pop(&deck_pilha[1]));
-                deck_pilha[0].topo->c->virada = true;
-            }
-        }
-    }
-    if(swap_deck){
+    
+    if(swap_deck_animation){
         if(deck_pilha[0].tamanho > 1){
             SDL_RenderCopy(renderer, texture_cartas_background, NULL, &deck_pilha[0].topo->anterior->c->rect);
         }
@@ -73,7 +62,7 @@ void atualizar_pilhas(){ // Função que renderiza as pilhas constantemente
         else{                
             push(&deck_pilha[1], pop(&deck_pilha[0]));
             deck_pilha[1].topo->c->virada = false;
-            swap_deck = false;
+            swap_deck_animation = false;
         }
     }
 

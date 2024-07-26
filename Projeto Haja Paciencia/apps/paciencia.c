@@ -67,6 +67,8 @@ int main(){
     bool quit = false;
 
     load_game(); // Carrega a tela do jogo inicial
+    
+    SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50};
 
     while(!quit){ // Loop principal
 
@@ -81,6 +83,11 @@ int main(){
 
         update_all(); // Renderiza
 
+        colorir_rect(&roberto, vermelho);
+        if(is_clicking_on_rect(&roberto)){
+            load_game();
+        }
+      
         if(clicked){ // Se houver click, onde ele é?
             handle_click();
             clicked = false;
@@ -88,7 +95,7 @@ int main(){
 
         SDL_RenderPresent(renderer); // Mostra na tela os elementos renderizados pelo renderer
 
-        SDL_Delay(3); // Delay entre os frames em ms
+        SDL_Delay(2);
     }
 
     SDL_Quit();
