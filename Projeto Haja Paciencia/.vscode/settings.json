@@ -19,6 +19,8 @@
         "streambuf": "c",
         "string_view": "c",
         "tuple": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "deque": "c",
+        "vector": "c"
     }
 }

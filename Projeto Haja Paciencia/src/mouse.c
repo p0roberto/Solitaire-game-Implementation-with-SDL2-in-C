@@ -26,20 +26,62 @@ void atualizar_mouse(){
     }
 }
 
-void handle_click(){
+void handle_first_click(){
+    if(mouse_list.tamanho) return;
+
     // checando se esta clicando em um dos sete monte
     for(int i = 0; i < TAM_P; i++){
-        node* at = listas[i].first;
-        for(int j = 0; j < listas[i].tamanho && at != NULL; j++){
+        if(!listas[i].tamanho) continue;
+        node* at = listas[i].last;
+        for(int j = listas[i].tamanho - 1; j >= 0 && at != NULL; j--){
             if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){
                 int qtd = listas[i].tamanho - j;
                 while(qtd--){
                     insert(&mouse_list, delete(&listas[i], j));
                 }
                 i = TAM_P;
-                break;
+                return;
             }
-            at = at->proximo;
+            at = at->anterior;
+        }
+    }
+
+
+    //checando se esta clicando no deck 0
+    if(is_clicking_on_rect(&deck_pilha[0].base)){
+        if(deck_pilha[0].tamanho) swap_deck_animation = true;
+        else{
+            while(deck_pilha[1].tamanho){   
+                push(&deck_pilha[0], pop(&deck_pilha[1]));
+                deck_pilha[0].topo->c->virada = true;
+            }
+        }
+    }
+
+    //checando se esta clicando no deck 1
+    if(is_clicking_on_rect(&deck_pilha[1].base)){
+        insert(&mouse_list, pop(&deck_pilha[1]));
+    }
+    
+
+    // checando se esta clicando nos naipes
+    for(int i = 0; i < NAIPES; i++){
+        if(is_clicking_on_rect(&naipes_rect[i]) && pilhas_g[i].tamanho){
+            insert(&mouse_list, pop(&pilhas_g[i]));
+            return;
+        }
+    }
+}
+
+void handle_second_click(){
+    // checando se esta clicando em um dos sete monte
+    for(int i = 0; i < TAM_P; i++){       
+        SDL_Rect gambiarra = (listas[i].tamanho) ?  listas[i].last->c->rect : listas[i].base;
+        if(is_clicking_on_rect(&gambiarra)){  
+            while(mouse_list.tamanho){
+                insert(&listas[i], delete(&mouse_list, 0));
+            }
+            return;
         }
     }
 
@@ -48,4 +90,21 @@ void handle_click(){
 
 
     // checando se esta clicando nos naipes
+    for(int i = 0; i < NAIPES && mouse_list.tamanho == 1; i++){
+        if(is_clicking_on_rect(&naipes_rect[i])){
+            while(mouse_list.tamanho){
+                push(&pilhas_g[i], delete(&mouse_list, 0));
+            }
+            return;
+        }
+    }
+}
+
+void handle_click(){
+    if(!mouse_list.tamanho){
+        handle_first_click();
+    }
+    else{
+        handle_second_click();
+    }    
 }

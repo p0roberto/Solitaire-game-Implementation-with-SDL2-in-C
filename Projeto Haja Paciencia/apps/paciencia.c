@@ -68,6 +68,8 @@ int main(){
     bool quit = false;
 
     load_game();
+
+    SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50};
     while(!quit){
 
         while(SDL_PollEvent(&event) != 0){
@@ -81,15 +83,21 @@ int main(){
 
         update_all();
 
+        colorir_rect(&roberto, vermelho);
+        if(is_clicking_on_rect(&roberto)){
+            load_game();
+            printf("oi!\n");
+        }
         if(clicked){
             handle_click();
             clicked = false;   
         }
 
 
+
         SDL_RenderPresent(renderer); 
 
-        SDL_Delay(3);
+        SDL_Delay(2);
     }
 
     SDL_Quit();
