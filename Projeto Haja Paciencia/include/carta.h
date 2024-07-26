@@ -24,13 +24,13 @@ enum naipes{
 };
 
 
-// Variaveis que armazenam a textura dos elementos
+// Variaveis do tipo Texture que armazenam a textura dos elementos
 SDL_Texture* texture_cartas[NAIPES][MAX+1]; // primeira coluna nula
 SDL_Texture* texture_naipes[NAIPES];
 SDL_Texture* texture_deck;
 SDL_Texture* texture_cartas_background;
 
-char imagens_cartas_path[NAIPES][MAX+1][100] = { // Matriz de strings, que armazena o nome do jpg das cartas
+char imagens_cartas_path[NAIPES][MAX+1][100] = { // Matriz de strings, que armazena o caminho ao jpg das cartas
     //LINHA 0: COPAS
     {"", "imagens/cartas/A_copas.png", "imagens/cartas/2_copas.png", "imagens/cartas/3_copas.png", "imagens/cartas/4_copas.png", "imagens/cartas/5_copas.png", "imagens/cartas/6_copas.png", "imagens/cartas/7_copas.png", "imagens/cartas/8_copas.png", "imagens/cartas/9_copas.png", "imagens/cartas/10_copas.png", "imagens/cartas/J_copas.png", "imagens/cartas/Q_copas.png", "imagens/cartas/K_copas.png"},
     //LINHA 1: PAUS
@@ -46,7 +46,7 @@ SDL_Rect naipes_rect[NAIPES];
 SDL_Rect deck_rect[2];
 SDL_Rect montes[7];
 
-char naipes_background_path[NAIPES][70] = { // Vetor de strings, que armazena o nome do jpg dos background dos naipes
+char naipes_background_path[NAIPES][70] = { // Vetor de strings, que armazena o caminho ao jpg dos background das pilhas de guardar
     "imagens/fundos/copas_sprite.png",
     "imagens/fundos/paus_sprite.png",
     "imagens/fundos/ouros_sprite.png",

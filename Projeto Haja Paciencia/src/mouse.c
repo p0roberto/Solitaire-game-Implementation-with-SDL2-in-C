@@ -8,12 +8,12 @@ void zerar_mouse(){
 }
 
 void atualizar_mouse(){
-    SDL_GetMouseState(&mouseX, &mouseY);
+    SDL_GetMouseState(&mouseX, &mouseY); // Atualiza as coordenadas do cursor
     mouse_list.base.x = mouseX;
     mouse_list.base.y = mouseY;
 
     int renderizadas = 0;
-    for(node* at = mouse_list.first; at; at = at->proximo){
+    for(node* at = mouse_list.first; at; at = at->proximo){ // Renderiza as cartas da lista do mouse
         at->c->rect.x = mouseX - largura_carta/2;
 
         int variacao_y = renderizadas * altura_carta / divisao;
@@ -37,7 +37,7 @@ void handle_first_click(){
             if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){
                 int qtd = listas[i].tamanho - j;
                 while(qtd--){
-                    insert(&mouse_list, delete(&listas[i], j));
+                    insert(&mouse_list, delete(&listas[i], j)); // Adiciona as cartas selecionadas na lista do mouse
                 }
                 i = TAM_P;
                 return;

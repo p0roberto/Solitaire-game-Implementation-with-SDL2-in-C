@@ -1,7 +1,6 @@
 #include "geral.h"
 
 void load_game(){
-
     // Inicializando a textura de tudo
     load_texture_naipes();
     load_texture_deck();
@@ -38,7 +37,7 @@ void load_game(){
         y += altura_carta + distance_between_cards_y;
     }
 
-    // Carregando os rects dos montes
+    // Carregando os rects da base dos montes
     x += largura_carta + 2*distance_between_cards_x;
     for(int i = 0; i < 7; i++){
         montes[i].x = x;
@@ -57,8 +56,8 @@ void load_game(){
 void update_all(){
     atualizar_background(); // Renderiza o background das pilhas
     atualizar_pilhas(); // Renderiza as cartas nas pilhas
-    atualizar_listas(); // Renderiza as cartas nas listas
-    atualizar_mouse(); // 
+    atualizar_listas(); // Renderiza as cartas nas listas (sete "pilhas" principais)
+    atualizar_mouse(); // Renderiza as cartas do mouse
 }
 
 
@@ -67,12 +66,13 @@ int main(){
 
     bool quit = false;
 
-    load_game();
-
+    load_game(); // Carrega a tela do jogo inicial
+    
     SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50};
-    while(!quit){
 
-        while(SDL_PollEvent(&event) != 0){
+    while(!quit){ // Loop principal
+
+        while(SDL_PollEvent(&event) != 0){ // Se houver interação
             if(event.type == SDL_QUIT){
                 quit = true;
             }
@@ -81,21 +81,19 @@ int main(){
             }
         }
 
-        update_all();
+        update_all(); // Renderiza
 
         colorir_rect(&roberto, vermelho);
         if(is_clicking_on_rect(&roberto)){
             load_game();
-            printf("oi!\n");
         }
-        if(clicked){
+      
+        if(clicked){ // Se houver click, onde ele é?
             handle_click();
-            clicked = false;   
+            clicked = false;
         }
 
-
-
-        SDL_RenderPresent(renderer); 
+        SDL_RenderPresent(renderer); // Mostra na tela os elementos renderizados pelo renderer
 
         SDL_Delay(2);
     }
