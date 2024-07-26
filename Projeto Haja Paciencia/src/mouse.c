@@ -35,6 +35,9 @@ void handle_first_click(){
         node* at = listas[i].last;
         for(int j = listas[i].tamanho - 1; j >= 0 && at != NULL; j--){
             if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){
+                origem = i + 2 + NAIPE + MONTE + i;
+                printf("## clicou no monte %d\n", i);
+                printf("## origem = %d\n", origem);
                 int qtd = listas[i].tamanho - j;
                 while(qtd--){
                     insert(&mouse_list, delete(&listas[i], j)); // Adiciona as cartas selecionadas na lista do mouse
@@ -60,20 +63,61 @@ void handle_first_click(){
 
     //checando se esta clicando no deck 1
     if(is_clicking_on_rect(&deck_pilha[1].base)){
+        printf("clicou deck 1\n");
+        origem = DECK + 1;
         insert(&mouse_list, pop(&deck_pilha[1]));
+        return;
     }
     
 
     // checando se esta clicando nos naipes
     for(int i = 0; i < NAIPES; i++){
         if(is_clicking_on_rect(&naipes_rect[i]) && pilhas_g[i].tamanho){
+            origem = 2 + NAIPE + i;
             insert(&mouse_list, pop(&pilhas_g[i]));
             return;
         }
     }
+
+    origem = -1;
 }
 
 void handle_second_click(){
+    if(mouse_list.tamanho == 0) return;
+    if(origem == -1){
+        printf("origem = -1\n");
+        return;
+    }
+
+    if(!verifica()){
+        printf("click invalido!\n");
+        printf("origem = %d\n", origem);
+        while(mouse_list.tamanho){
+            switch(get_base_tipo(origem)){
+                case DECK:
+                    printf("origem no deck!\n");
+                    push(&deck_pilha[1], delete(&mouse_list, 0));
+                    break;
+
+                case NAIPE:
+                    printf("origem no naipe!\n");
+                    push(&pilhas_g[origem - 2], delete(&mouse_list, 0));
+                    break;
+
+                case MONTE:
+                    printf("origem no monte!\n");
+                    printf("!! vo inserir no monte %d\n", origem - MONTE - NAIPE - 2);
+                    insert(&listas[origem - MONTE - NAIPE - 2], delete(&mouse_list, 0));
+                    break;
+
+                default:
+                    printf("deu erro\n");
+            }
+
+        }
+        return;
+    }
+
     // checando se esta clicando em um dos sete monte
     for(int i = 0; i < TAM_P; i++){       
         SDL_Rect gambiarra = (listas[i].tamanho) ?  listas[i].last->c->rect : listas[i].base;

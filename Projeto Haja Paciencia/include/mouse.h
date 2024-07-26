@@ -7,6 +7,7 @@
 int mouseX = 0, mouseY = 0;
 bool clicked = false;
 lista mouse_list; 
+int origem = -1;
 
 // Cabeçario de funções
 void zerar_mouse();

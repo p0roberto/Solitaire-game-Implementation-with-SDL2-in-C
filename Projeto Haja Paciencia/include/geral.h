@@ -9,6 +9,7 @@
 #include "lista.h"
 #include "pilha.h"
 #include "mouse.h"
+#include "verifica.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

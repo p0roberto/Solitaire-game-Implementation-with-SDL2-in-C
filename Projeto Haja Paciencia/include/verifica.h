@@ -15,6 +15,11 @@ bool Matriz_ADJ[ADJ_SIZE][ADJ_SIZE] = {
     {0, 1, 1} /*monte*/
 };
 
+//0 a 1 = deck , 2 a 5 = naipes, 6 a 12 = montes
+SDL_Rect bases[2 + NAIPES + TAM_P];
 
+int get_base_tipo(int base_index);
+bool verifica();
+bool win_check();
 
 #endif

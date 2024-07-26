@@ -70,8 +70,11 @@ int main(){
     
     SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50};
 
-    while(!quit){ // Loop principal
+    int paulo_w = 200;
+    int paulo_h = 200;
+    SDL_Rect paulo = {(SCREEN_WIDTH - paulo_w) /2 , (SCREEN_HEIGHT - paulo_h)/2, paulo_w, paulo_h};
 
+    while(!quit){ // Loop principal
         while(SDL_PollEvent(&event) != 0){ // Se houver interação
             if(event.type == SDL_QUIT){
                 quit = true;
@@ -82,6 +85,13 @@ int main(){
         }
 
         update_all(); // Renderiza
+        if(win_check()){
+            colorir_rect(&paulo, verde);
+            if(is_clicking_on_rect(&paulo)){
+                load_game();
+            }
+        }
+
 
         colorir_rect(&roberto, vermelho);
         if(is_clicking_on_rect(&roberto)){
@@ -94,6 +104,7 @@ int main(){
         }
 
         SDL_RenderPresent(renderer); // Mostra na tela os elementos renderizados pelo renderer
+        SDL_RenderClear(renderer);
 
         SDL_Delay(2);
     }

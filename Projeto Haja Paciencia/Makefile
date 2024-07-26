@@ -18,7 +18,8 @@ _src: \
 		$(OBJ)/carta.o \
 		$(OBJ)/mouse.o \
 		$(OBJ)/pilha.o \
-		$(OBJ)/lista.o 
+		$(OBJ)/lista.o \
+		$(OBJ)/verifica.o
 
 clean_apps:
 	rm -rf $(BIN)/*
