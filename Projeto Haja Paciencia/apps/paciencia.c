@@ -7,7 +7,7 @@ void load_game(){
     load_texture_cartas();
     background_texture = load_image_to_texture("imagens/fundos/background.jpg");
     texture_button_new_game = load_image_to_texture("imagens/fundos/new_game_button.jpg");
-    texture_tela_vitoria = load_image_to_texture("imagens/fundos/new_game_button.jpg");
+    texture_tela_vitoria = load_image_to_texture("imagens/fundos/Winner.jpg");
 
     // Inicializando auxiliares para os rects
     const int border_distance_x = 20;
