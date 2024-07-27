@@ -1,34 +1,33 @@
 #ifndef __CARTA_H__
 #define __CARTA_H__
 
-// #include "geral.h"
 #include "interface.h"
 
 #define NAIPES 4 // quantidade de naipes
 #define MAX 13 // quantidade de cartas de cada naipe 
 #define TOTAL_CARTAS 52
 
-const int altura_carta = 160; // altura das cartas, para o rect; 
-const int largura_carta = 105; // largura das carta, para o rect;
-const int divisao = 4; //fracao da carta que fica visivel quando é tampada por outra (ex: 4 -> 1/4 da carta)
+const int altura_carta = 160; // Altura das cartas, para o rect; 
+const int largura_carta = 105; // Largura das carta, para o rect;
+const int divisao = 4; // Fração da carta que fica visível quando é tampada por outra (ex: 4 -> 1/4 da carta)
 
 typedef struct{
-    int numero; // A = 1, J = 11, Q = 12, K = 13, 
+    int numero; // A = 1, J = 11, Q = 12, K = 13
     int naipe;
-    bool virada; //  se for true, virada pra baixo,  se for false, virada pra cima
+    bool virada; // Se for true, virada pra baixo, se for false, virada pra cima
     SDL_Rect rect; // Coordenadas
 } carta;
 
 enum naipes{
-    COPAS = 0, PAUS, OUROS, ESPADA // Espada = Ponta, Copas = Coração, Ouros = Losango, Paus = Trevo
+    COPAS = 0, PAUS, OUROS, ESPADA // Enumera os naipes
 };
 
 
-// Variaveis do tipo Texture que armazenam a textura dos elementos
-SDL_Texture* texture_cartas[NAIPES][MAX+1]; // primeira coluna nula
-SDL_Texture* texture_naipes[NAIPES];
-SDL_Texture* texture_deck;
-SDL_Texture* texture_cartas_background;
+// Variáveis do tipo Texture que armazenam a textura dos elementos
+SDL_Texture* texture_cartas[NAIPES][MAX+1]; // Textura das cartas (primeira coluna nula, para identar o número das cartas apartir do 1)
+SDL_Texture* texture_naipes[NAIPES]; // Textura do background das pilhas de guardar
+SDL_Texture* texture_deck; // Textura do background 
+SDL_Texture* texture_cartas_background; // Textura da parte de trás das cartas
 
 char imagens_cartas_path[NAIPES][MAX+1][100] = { // Matriz de strings, que armazena o caminho ao jpg das cartas
     //LINHA 0: COPAS
@@ -41,10 +40,10 @@ char imagens_cartas_path[NAIPES][MAX+1][100] = { // Matriz de strings, que armaz
     {"", "imagens/cartas/A_espadas.png", "imagens/cartas/2_espadas.png", "imagens/cartas/3_espadas.png", "imagens/cartas/4_espadas.png", "imagens/cartas/5_espadas.png", "imagens/cartas/6_espadas.png", "imagens/cartas/7_espadas.png", "imagens/cartas/8_espadas.png", "imagens/cartas/9_espadas.png", "imagens/cartas/10_espadas.png", "imagens/cartas/J_espadas.png", "imagens/cartas/Q_espadas.png", "imagens/cartas/K_espadas.png"}
 };
 
-// Variaveis do tipo rect, que armazenam as coordenadas
-SDL_Rect naipes_rect[NAIPES];
-SDL_Rect deck_rect[2];
-SDL_Rect montes[7];
+// Variaveis do tipo Rect, que armazenam as coordenadas
+SDL_Rect naipes_rect[NAIPES]; // Rect das pilhas de guardar
+SDL_Rect deck_rect[2]; // Rect dos decks de compra
+SDL_Rect montes[7]; // Rect dos sete montes iniciais
 
 char naipes_background_path[NAIPES][70] = { // Vetor de strings, que armazena o caminho ao jpg dos background das pilhas de guardar
     "imagens/fundos/copas_sprite.png",

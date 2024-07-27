@@ -1,14 +1,14 @@
 #include "geral.h"
 
-void iniciar_cartas(){ // Inicializa as cartas no vetor
+void iniciar_cartas(){ // Inicializa as cartas do baralho
     int index = 0;
     for(int i = 0; i < NAIPES; i++){
         for(int j = 1; j <= MAX; j++){
-            baralho[index].naipe = i; // i_esimo naipe
-            baralho[index].numero = j; // j_esimo numero
-            baralho[index].virada = true; // inicializa todas de costas
-            baralho[index].rect.w = largura_carta; // dimensoes
-            baralho[index].rect.h = altura_carta; // dimensoes
+            baralho[index].naipe = i; // i_ésimo naipe
+            baralho[index].numero = j; // j_ésimo número
+            baralho[index].virada = true; // inicializa todas as cartas de costas
+            baralho[index].rect.w = largura_carta; // dimensões
+            baralho[index].rect.h = altura_carta; // dimensões
             index++;
         }
     }
@@ -16,7 +16,7 @@ void iniciar_cartas(){ // Inicializa as cartas no vetor
     distribuir_cartas();
 }
 
-void embaralhar(){ // Embaralha as cartas, trocando-as de posição com outra carta aleatoria
+void embaralhar(){ // Embaralha as cartas, trocando-as de posição com outra carta aleatória
     bool usados[TOTAL_CARTAS];
 
     for(int i = 0; i < TOTAL_CARTAS; i++){
@@ -42,37 +42,35 @@ void embaralhar(){ // Embaralha as cartas, trocando-as de posição com outra ca
     }
 }
 
-
-// funcões load_texture, que carregam a textura para a variavel de textura dos elementos
-void load_texture_naipes(){
+void load_texture_naipes(){ // Carrega a textura para a variável de textura do background das pilhas de guardar
     for(int i = 0; i < NAIPES; i++){
         texture_naipes[i] = load_image_to_texture(naipes_background_path[i]);
     }
 }
 
-void load_texture_deck(){
+void load_texture_deck(){ // Carrega a textura para a variável de textura do background dos decks de compra
     texture_deck = load_image_to_texture("imagens/fundos/deck_background.png");
 }
 
-void load_texture_cartas(){
-    for(int i = 0; i < NAIPES; i++){        
-        for(int j = 1; j <= MAX; j++){
+void load_texture_cartas(){ // Carrega a textura para a variável de textura dos montes iniciais
+    for(int i = 0; i < NAIPES; i++){
+        for(int j = 1; j <= MAX; j++){ // Carrega as texturas das cartas para as respectivas variáveis de textura
             texture_cartas[i][j] = load_image_to_texture(imagens_cartas_path[i][j]);
         }
     }
-    texture_cartas_background = load_image_to_texture("imagens/cartas/background_cartas_geral.png");
+    texture_cartas_background = load_image_to_texture("imagens/cartas/background_cartas_geral.png"); // Carrega a textura do background dos montes iniciais
 }
 
-void atualizar_background(){  // Função que posiciona os backgrounds
+void atualizar_background(){  // Função que renderiza os backgrounds
     
     SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); // Renderiza o fundo
     SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game); // Renderiza o botão
-
-    for(int i = 0; i < 2; i++){ // Renderiza os decks de compra
+    
+    for(int i = 0; i < 2; i++){ // Renderiza o background dos decks de compra
         SDL_RenderCopy(renderer, texture_deck, NULL, &deck_rect[i]);
     }
 
-    for(int i = 0; i < NAIPES; i++){ // Renderiza o local de guardar
+    for(int i = 0; i < NAIPES; i++){ // Renderiza o background das pilhas de guardar
         SDL_RenderCopy(renderer, texture_naipes[i], NULL, &naipes_rect[i]);
     }
 
@@ -84,14 +82,14 @@ void atualizar_background(){  // Função que posiciona os backgrounds
 void distribuir_cartas(){ // Distribui as cartas iniciais, utilizando o baralho embaralhado
     int carta_atual = 0;
     
-    for(int i = 0; i < TAM_P; i++){
+    for(int i = 0; i < QUANT_LISTAS; i++){ // Distribui elas entre os montes
         for(int j = 0; j <= i; j++){
             insert(&listas[i], &baralho[carta_atual]);
             carta_atual++;
         }
     }
-    // As cartas restantes são colocadas no deck de compras
-    for( ; carta_atual < TOTAL_CARTAS; carta_atual++){
+    
+    for( ; carta_atual < TOTAL_CARTAS; carta_atual++){ // As cartas restantes são colocadas no deck de compras
         push(&deck_pilha[0], &baralho[carta_atual]);
     }
 }

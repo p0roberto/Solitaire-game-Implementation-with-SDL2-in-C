@@ -1,7 +1,7 @@
 #include "geral.h"
 
-// Verifica a possibilidade de colocar cartas nas pilhas
-bool verifica_lista(lista *l1, lista *l2){ // Incompleta
+// Verifica a possibilidade de colocar cartas nas pilhas (Listas)
+bool verifica_lista(lista *l1, lista *l2){
     if (l1 == NULL || l2 == NULL) {
         return false; // Verificação de ponteiros nulos
     }
@@ -14,8 +14,8 @@ bool verifica_lista(lista *l1, lista *l2){ // Incompleta
         }
         return false;
     }
-    if(((aux->c->naipe + 1) % 2) != ((aux2->c->naipe + 1) % 2)){ // Verificando se os naipes possuem a mesma cor
-        if(aux->c->numero == (aux2->c->numero - 1)){ // Verificando se os numeros sao consecutivos
+    if(((aux->c->naipe + 1) % 2) != ((aux2->c->naipe + 1) % 2)){ // Verificando se os naipes são de cores opostas
+        if(aux->c->numero == (aux2->c->numero - 1)){ // Verificando se os números são consecutivos
             return true;
         }
         return false;
@@ -38,9 +38,8 @@ bool verifica_pilha(lista *list, pilha *p, int naipe_da_pilha){ // Recebe a list
         }
         return false;
     }
-    if((aux->c->naipe == naipe_da_pilha) && (aux->c->numero == aux2->c->numero + 1)){
-    // permitido guardar apenas se for de mesmo naipe && sucessor
-        return true;
+    if((aux->c->naipe == naipe_da_pilha) && (aux->c->numero == aux2->c->numero + 1)){ // Se houver cartas na pilha de guardar
+        return true; // Permitido guardar apenas se for de mesmo naipe && sucessor
     }
     return false;
 }
@@ -49,13 +48,6 @@ bool win_check(){ // Verifica se o usuário venceu
     int soma = 0;
     for(int i = 0; i < NAIPES; i++){
         soma += pilhas_g[i].tamanho;
-    }
+    } // Se a soma de cartas nas pilhas de guardar for igual a 52, retorna true, se não, false
     return soma >= TOTAL_CARTAS;
-}
-
-int get_base_tipo(int base_index){
-    printf("verificando %d\n", base_index);
-    if(base_index >= 6) return MONTE;
-    if(base_index >= 2) return NAIPE;
-    return DECK;
 }

@@ -3,21 +3,21 @@
 
 #include "carta.h"
 
-typedef struct node{
-    carta *c;
-    struct node *proximo;
-    struct node *anterior;
+typedef struct node{ // Struct Nó de Lista
+    carta *c; // Carta do Nó atual
+    struct node *proximo; // Aponta para o próximo Nó da Lista
+    struct node *anterior; // Aponta para o Nó anterior da Lista
 } node;
 
-typedef struct{
-    node *first;
-    int tamanho;
-    node *last;
-    SDL_Rect base;
+typedef struct{ // Struct Lista
+    node *first; // Aponta para o primeiro Nó da Lista
+    int tamanho; // Tamanho da Lista
+    node *last; // Aponta para o último Nó da Lista
+    SDL_Rect base; // Rect da Lista (Coordenadas da sua base)
 } lista;
 
-#define TAM_P 7
-lista listas[TAM_P]; // vetor de listas, que contem as sete "pilhas" (listas) de jogo
+#define QUANT_LISTAS 7 // Quantidade de Listas que serão usadas
+lista listas[QUANT_LISTAS]; // vetor de Listas, que contem as sete "pilhas" de jogo (montes iniciais)
 
 // Cabeçario de funções
 void zerar_listas();

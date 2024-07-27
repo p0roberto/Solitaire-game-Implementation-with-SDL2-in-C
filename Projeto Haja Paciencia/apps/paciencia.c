@@ -7,14 +7,13 @@ void load_game(){
     load_texture_cartas();
     background_texture = load_image_to_texture("imagens/fundos/background.jpg");
     texture_button_new_game = load_image_to_texture("imagens/fundos/new_game_button.jpg");
+    texture_tela_vitoria = load_image_to_texture("imagens/fundos/new_game_button.jpg");
 
-    // Inicializando constantes
+    // Inicializando auxiliares para os rects
     const int border_distance_x = 20;
     const int border_distance_y = 15;
     const int distance_between_cards_y = 10;
     const int distance_between_cards_x = 30;
-
-    // Carregando os rects gerais
     int y = border_distance_y;
     int x = border_distance_x;
     int i = 0;
@@ -63,41 +62,38 @@ void update_all(){
 
 
 int main(){
-    InitializeSDL(); // Inicializa o jogo
+    InitializeSDL(); // Inicializa a tela
 
-    bool quit = false;
+    bool quit = false; // Inicializa quit em false
 
     load_game(); // Carrega a configuração incial do jogo
-
-    SDL_Rect paulo = {(SCREEN_WIDTH - 200) /2 , (SCREEN_HEIGHT - 200)/2, 200, 200}; // tela de vitória, exemplo
 
     while(!quit){ // Loop principal
         while(SDL_PollEvent(&event) != 0){ // Se houver interação
             if(event.type == SDL_QUIT){
-                quit = true;
+                quit = true; // Se apertar sair, quit recebe true
             }
             if(event.type == SDL_MOUSEBUTTONDOWN){
-                clicked = true;
+                clicked = true; // Se for click, ativa o clicked
             }
         }
 
-        update_all(); // Renderiza
+        update_all(); // Renderiza os elementos
                 
         if(win_check()){ // Se o usuário vencer, apresenta a tela de vitória
-            colorir_rect(&paulo, verde);
-            if(is_clicking_on_rect(&paulo)){ // Se o usuário  clicar na tela de vitória, reinicia o jogo
+            SDL_RenderCopy(renderer, texture_tela_vitoria, NULL, &vitoria); // Renderiza a tela de vitória
+            if(is_clicking_on_rect(&vitoria)){ // Se o usuário  clicar na tela de vitória, reinicia o jogo
                 load_game();
             }
         }
 
-        // colorir_rect(&new_game, vermelho); 
-        if(is_clicking_on_rect(&new_game)){ // Se o usuário clicar no botão de reiniciar, reinicia o jogo
+        if(is_clicking_on_rect(&new_game)){ // Se o usuário clicar no botão New Game, reinicia o jogo
             load_game();
         }
       
-        if(clicked){ // Se houver click, onde ele é?
+        if(clicked){ // Se houver click, verificar se é relevante
             handle_click();
-            clicked = false;
+            clicked = false; // Depois da verificação, clicked retorna para false
         }
 
         SDL_RenderPresent(renderer); // Mostra na tela os elementos renderizados pelo renderer

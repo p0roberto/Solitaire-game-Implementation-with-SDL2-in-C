@@ -3,19 +3,19 @@
 
 #include "carta.h"
 
-typedef struct no{
-    carta *c;
-    struct no* anterior;
+typedef struct no{ // Struct Nó de Pilha
+    carta *c; // Carta do Nó atual
+    struct no* anterior; // Aponta para o Nó anterior
 } no;
 
-typedef struct{
-    int tamanho;
-    no *topo;
-    SDL_Rect base;
+typedef struct{ // Struct Pilha
+    int tamanho; // Tamanho da Pilha
+    no *topo; // Aponta para o topo da Pilha
+    SDL_Rect base; // Rect da PIlha (Coordenadas da sua base)
 } pilha;
 
-pilha pilhas_g[NAIPES]; // Vetor de pilhas, que contem as quatro pilhas de guardar cartas ordenadas
-pilha deck_pilha[2]; // Vetor de pilhas, que contem os deckes de compra
+pilha pilhas_g[NAIPES]; // Vetor de Pilhas, que contem as quatro pilhas de guardar cartas
+pilha deck_pilha[2]; // Vetor de Pilhas, que contem os deckes de compra
 
 bool swap_deck_animation = false; //animacao de ir do deck 0 pro deck 1
 

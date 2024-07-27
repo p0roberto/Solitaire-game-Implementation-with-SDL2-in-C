@@ -1,7 +1,7 @@
 #include "geral.h"
 
-void zerar_listas(){ // Zera as listas
-    for(int k = 0; k < TAM_P; k++){
+void zerar_listas(){ // Zera as Listas
+    for(int k = 0; k < QUANT_LISTAS; k++){
         listas[k].first = NULL;
         listas[k].last = NULL;
         listas[k].tamanho = 0;
@@ -9,7 +9,7 @@ void zerar_listas(){ // Zera as listas
     }
 }
 
-void insert(lista* l, carta *c){ // Inserir carta na lista 
+void insert(lista* l, carta *c){ // Inserir carta na Lista 
     if(!l || !c){
         printf("insert error: invalid paramater\n");
     }
@@ -37,8 +37,8 @@ void insert(lista* l, carta *c){ // Inserir carta na lista
 }
 
 void atualizar_listas(){ // Percorre as listas, e as renderiza constantemente    
-    for(int i = 0; i < TAM_P; i++){
-        if(listas[i].tamanho == 0) continue;
+    for(int i = 0; i < QUANT_LISTAS; i++){
+        if(listas[i].tamanho == 0) continue; // Se não houver cartas na lista, vai para a próxima
         node* at = listas[i].first; // auxiliar, para percorrer as cartas na lista
 
         int renderizadas = 0;
@@ -46,12 +46,11 @@ void atualizar_listas(){ // Percorre as listas, e as renderiza constantemente
             int naipe = at->c->naipe; // informações da carta atual
             int numero = at->c->numero;
 
-            int variacao_y = renderizadas * altura_carta / divisao;
-            at->c->rect.y = listas[i].base.y + variacao_y; // Varia a altura da carta
+            int variacao_y = renderizadas * altura_carta / divisao; // Variação da altura das cartas sobrepostas
+            at->c->rect.y = listas[i].base.y + variacao_y;
 
-            if(at == listas[i].last && mouse_list.tamanho == 0) at->c->virada = false;
-            // Carrega a textura da carta atual
-            SDL_Texture* t = (at->c->virada) ? texture_cartas_background : texture_cartas[naipe][numero];
+            if(at == listas[i].last && mouse_list.tamanho == 0) at->c->virada = false; // Se a carta estiver de costas e não houver cartas no mouse, desvira ela
+            SDL_Texture* t = (at->c->virada) ? texture_cartas_background : texture_cartas[naipe][numero]; // Carrega a textura da carta (de frente ou de costas) 
             SDL_RenderCopy(renderer, t, NULL, &at->c->rect); // Renderiza a carta
             
             at = at->proximo; 
@@ -60,7 +59,7 @@ void atualizar_listas(){ // Percorre as listas, e as renderiza constantemente
     }
 }
 
-carta* delete(lista *L, int indice){ // Remove carta da lista
+carta* delete(lista *L, int indice){ // Remove carta da Lista
     if(!L){
         printf("remove error: invalid list\n");
         return NULL;
@@ -96,10 +95,10 @@ carta* delete(lista *L, int indice){ // Remove carta da lista
     L->tamanho--;
     carta* c = at->c;
     free(at);
-    return c;
+    return c; // Retorna a carta removida, para ser usada no "push" em outra "pilha"
 }
 
-carta* at(lista* l, int indice){
+carta* at(lista* l, int indice){ // Auxiliar
     if(!l){
         printf("at error: invalid list\n");
         return NULL;
