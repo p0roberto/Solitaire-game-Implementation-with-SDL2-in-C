@@ -66,9 +66,7 @@ int main(){
 
     bool quit = false;
 
-    load_game(); // Carrega a tela do jogo inicial
-    
-    SDL_Rect roberto = {500,SCREEN_HEIGHT - 100, 150, 50}; // botao de reiniciar, exemplo
+    load_game(); // Carrega a configuração incial do jogo
 
     SDL_Rect paulo = {(SCREEN_WIDTH - 200) /2 , (SCREEN_HEIGHT - 200)/2, 200, 200}; // tela de vitória, exemplo
 
@@ -84,6 +82,11 @@ int main(){
 
         update_all(); // Renderiza
         
+        SDL_Rect new_game = {500,SCREEN_HEIGHT - 100, 150, 50}; // botao de reiniciar
+        SDL_Texture* texture_button_new_game;
+        texture_button_new_game = load_image_to_texture("imagens/fundos/new_game_button.jpg");
+        SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game);
+        
         if(win_check()){ // Se o usuário vencer, apresenta a tela de vitória
             colorir_rect(&paulo, verde);
             if(is_clicking_on_rect(&paulo)){ // Se o usuário  clicar na tela de vitória, reinicia o jogo
@@ -91,8 +94,8 @@ int main(){
             }
         }
 
-        colorir_rect(&roberto, vermelho); 
-        if(is_clicking_on_rect(&roberto)){ // Se o usuário clicar no botão de reiniciar, reinicia o jogo
+        // colorir_rect(&new_game, vermelho); 
+        if(is_clicking_on_rect(&new_game)){ // Se o usuário clicar no botão de reiniciar, reinicia o jogo
             load_game();
         }
       

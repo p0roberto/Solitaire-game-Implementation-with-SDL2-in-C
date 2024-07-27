@@ -49,7 +49,7 @@ void atualizar_listas(){ // Percorre as listas, e as renderiza constantemente
             int variacao_y = renderizadas * altura_carta / divisao;
             at->c->rect.y = listas[i].base.y + variacao_y; // Varia a altura da carta
 
-            if(at == listas[i].last) at->c->virada = false;
+            if(at == listas[i].last && mouse_list.tamanho == 0) at->c->virada = false;
             // Carrega a textura da carta atual
             SDL_Texture* t = (at->c->virada) ? texture_cartas_background : texture_cartas[naipe][numero];
             SDL_RenderCopy(renderer, t, NULL, &at->c->rect); // Renderiza a carta
