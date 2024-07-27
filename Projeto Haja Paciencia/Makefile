@@ -13,7 +13,6 @@ APP = paciencia
 all: _src clean_apps _apps
 
 _src: \
-		$(OBJ)/cor.o \
 		$(OBJ)/interface.o \
 		$(OBJ)/carta.o \
 		$(OBJ)/mouse.o \

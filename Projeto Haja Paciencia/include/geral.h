@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 #include "carta.h"
-//#include "cor.h"
 #include "interface.h"
 #include "lista.h"
 #include "pilha.h"

@@ -97,22 +97,3 @@ carta* delete(lista *L, int indice){ // Remove carta da Lista
     free(at);
     return c; // Retorna a carta removida, para ser usada no "push" em outra "pilha"
 }
-
-carta* at(lista* l, int indice){ // Auxiliar
-    if(!l){
-        printf("at error: invalid list\n");
-        return NULL;
-    }
-
-    if(indice >= l->tamanho || indice < 0){
-        printf("at error: invalid index\n");
-        return NULL;
-    }
-
-    node* at = l->first;
-    for(int i = 0; i < indice; i++){
-        at = at->proximo;
-    }
-
-    return at->c;
-}
