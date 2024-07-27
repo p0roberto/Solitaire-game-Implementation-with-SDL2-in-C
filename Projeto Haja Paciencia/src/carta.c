@@ -63,8 +63,9 @@ void load_texture_cartas(){ // Carrega a textura para a variável de textura dos
 
 void atualizar_background(){  // Função que renderiza os backgrounds
     
-    SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); // Renderiza o fundo
-    SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game); // Renderiza o botão
+    SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); // Renderiza a imagem de fundo
+    SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game); // Renderiza o botão New Game
+    SDL_RenderCopy(renderer, texture_exit_game, NULL, &exit_game); // Renderiza o botão Exit Game
     
     for(int i = 0; i < 2; i++){ // Renderiza o background dos decks de compra
         SDL_RenderCopy(renderer, texture_deck, NULL, &deck_rect[i]);

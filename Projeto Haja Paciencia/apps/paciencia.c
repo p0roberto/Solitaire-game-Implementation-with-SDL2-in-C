@@ -7,7 +7,8 @@ void load_game(){
     load_texture_cartas();
     background_texture = load_image_to_texture("imagens/fundos/background.jpg");
     texture_button_new_game = load_image_to_texture("imagens/fundos/new_game_button.jpg");
-    texture_tela_vitoria = load_image_to_texture("imagens/fundos/Winner.jpg");
+    texture_tela_vitoria = load_image_to_texture("imagens/fundos/winner.png");
+    texture_exit_game = load_image_to_texture("imagens/fundos/exit_game.png");
 
     // Inicializando auxiliares para os rects
     const int border_distance_x = 20;
@@ -82,14 +83,27 @@ int main(){
                 
         if(win_check()){ // Se o usuário vencer, apresenta a tela de vitória
             SDL_RenderCopy(renderer, texture_tela_vitoria, NULL, &vitoria); // Renderiza a tela de vitória
-            if(is_clicking_on_rect(&vitoria)){ // Se o usuário  clicar na tela de vitória, reinicia o jogo
-                load_game();
+            SDL_Rect new_game_2 = {(SCREEN_WIDTH - 300) / 2, (SCREEN_HEIGHT) / 2 + 20, 300, 100};
+            SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game_2); // Renderiza um novo botão New Game, mais destacado
+            SDL_Rect exit_game_2 = {(SCREEN_WIDTH - 300) / 2, (SCREEN_HEIGHT) / 2 + 140, 300, 100};
+            SDL_RenderCopy(renderer, texture_exit_game, NULL, &exit_game_2); // Renderiza um novo botão Exit Game, mais destacado
+            carta carta_fantasma; // Criando uma carta fantasma, que será inserida na lista do cursor
+            carta_fantasma.numero = 13; // Fazendo com que o usuário não consiga mais pegar cartas na pilha
+            insert(&mouse_list, &carta_fantasma);
+            if (is_clicking_on_rect(&new_game_2)) { // Se o usuário clicar no botão New Game, reinicia o jogo
+                load_game(); 
             }
+            if (is_clicking_on_rect(&exit_game_2)){ // Se o usuário clicar no botão Exit Game, ele quita
+                quit = true; 
+            }         
         }
 
         if(is_clicking_on_rect(&new_game)){ // Se o usuário clicar no botão New Game, reinicia o jogo
             load_game();
         }
+        if (is_clicking_on_rect(&exit_game)){ // Se o usuário clicar no botão Exit Game, ele quita
+            quit = true; 
+        }   
       
         if(clicked){ // Se houver click, verificar se é relevante
             handle_click();
