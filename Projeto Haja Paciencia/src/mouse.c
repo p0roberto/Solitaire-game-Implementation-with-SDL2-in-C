@@ -61,7 +61,7 @@ lista* handle_first_click(){ // Verificações do primeiro click
     }
 
     // Checando se esta clicando no deck de compras (de cartas desviradas)
-    if(is_clicking_on_rect(&deck_pilha[1].base)){
+    if(is_clicking_on_rect(&deck_pilha[1].base) && deck_pilha[1].tamanho){
         origem = 1;
         insert(&mouse_list, pop(&deck_pilha[1])); // Adiciona a carta clicada na Lista do cursor
         return &mouse_list; // Retorna a(s) carta(s) selecionada(s) pelo usuário
