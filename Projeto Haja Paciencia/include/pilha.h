@@ -19,7 +19,6 @@ pilha deck_pilha[2]; // Vetor de pilhas, que contem os deckes de compra
 
 bool swap_deck_animation = false; //animacao de ir do deck 0 pro deck 1
 
-
 // Cabeçario de funções
 bool push(pilha *p, carta *c);
 carta* pop(pilha *p);

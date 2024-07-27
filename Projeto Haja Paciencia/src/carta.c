@@ -66,6 +66,7 @@ void load_texture_cartas(){
 void atualizar_background(){  // Função que posiciona os backgrounds
     
     SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); // Renderiza o fundo
+    SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game); // Renderiza o botão
 
     for(int i = 0; i < 2; i++){ // Renderiza os decks de compra
         SDL_RenderCopy(renderer, texture_deck, NULL, &deck_rect[i]);

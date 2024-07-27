@@ -37,7 +37,7 @@ lista* handle_first_click(){ // Retorna a carta clicada pelo usuário, se for o 
         for(int j = listas[i].tamanho - 1; j >= 0 && at != NULL; j--){
             if(is_clicking_on_rect(&at->c->rect) && !at->c->virada){
                 origem = 6 + i;
-                printf("## clicou no monte: %d\n", i);
+                //printf("## clicou no monte: %d\n", i);
                 int qtd = listas[i].tamanho - j;
                 while(qtd--){
                     insert(&mouse_list, delete(&listas[i], j)); // Adiciona as cartas selecionadas na lista do mouse
@@ -63,7 +63,7 @@ lista* handle_first_click(){ // Retorna a carta clicada pelo usuário, se for o 
 
     // Checando se esta clicando no deck 1
     if(is_clicking_on_rect(&deck_pilha[1].base)){
-        printf("## clicou deck 1\n");
+        //printf("## clicou deck 1\n");
         origem = 1;
         insert(&mouse_list, pop(&deck_pilha[1]));
         return &mouse_list;
@@ -72,7 +72,7 @@ lista* handle_first_click(){ // Retorna a carta clicada pelo usuário, se for o 
     // Checando se esta clicando nas pilhas de guardar
     for(int i = 0; i < NAIPES; i++){
         if(is_clicking_on_rect(&naipes_rect[i]) && pilhas_g[i].tamanho){
-            printf("## clicou na pilha de guardar: %d\n", i);
+            //printf("## clicou na pilha de guardar: %d\n", i);
             origem = 2 + i;
             insert(&mouse_list, pop(&pilhas_g[i]));
             return &mouse_list;
@@ -83,8 +83,9 @@ lista* handle_first_click(){ // Retorna a carta clicada pelo usuário, se for o 
 }
 
 void handle_second_click(){
-    printf("## origem da atual: %d\n", origem);
+    //printf("## origem da atual: %d\n", origem);
     if(mouse_list.tamanho == 0) return;
+    if(origem == -1) return;
 
     // Checando se esta clicando em um dos sete monte
     for(int i = 0; i < TAM_P; i++){       
@@ -121,6 +122,7 @@ void handle_second_click(){
                 while(mouse_list.tamanho){
                     push(&pilhas_g[i], delete(&mouse_list, 0));
                 }
+                return;
             }  else{
                     if(origem >= 6){
                         while(mouse_list.tamanho){
@@ -139,6 +141,7 @@ void handle_second_click(){
             }
         }
     }
+    return;
 }
 
 void handle_click(){

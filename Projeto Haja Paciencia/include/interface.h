@@ -16,8 +16,11 @@ const int SCREEN_WIDTH = 1428; // Largura da janela
 const int SCREEN_HEIGHT = 918; // Altura da janela
 
 SDL_Texture* background_texture = NULL;
+SDL_Texture* texture_button_new_game;
 
 SDL_Rect background_rect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+SDL_Rect new_game = {500,SCREEN_HEIGHT - 100, 150, 50}; // botao de reiniciar
+
 
 // Cabeçario de funções
 bool InitializeSDL();

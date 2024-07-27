@@ -6,6 +6,7 @@ void load_game(){
     load_texture_deck();
     load_texture_cartas();
     background_texture = load_image_to_texture("imagens/fundos/background.jpg");
+    texture_button_new_game = load_image_to_texture("imagens/fundos/new_game_button.jpg");
 
     // Inicializando constantes
     const int border_distance_x = 20;
@@ -81,12 +82,7 @@ int main(){
         }
 
         update_all(); // Renderiza
-        
-        SDL_Rect new_game = {500,SCREEN_HEIGHT - 100, 150, 50}; // botao de reiniciar
-        SDL_Texture* texture_button_new_game;
-        texture_button_new_game = load_image_to_texture("imagens/fundos/new_game_button.jpg");
-        SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game);
-        
+                
         if(win_check()){ // Se o usuário vencer, apresenta a tela de vitória
             colorir_rect(&paulo, verde);
             if(is_clicking_on_rect(&paulo)){ // Se o usuário  clicar na tela de vitória, reinicia o jogo
