@@ -12,6 +12,8 @@ int origem = -1;
 // Cabeçario de funções
 void zerar_mouse();
 void atualizar_mouse();
+lista* handle_first_click();
+void handle_second_click();
 void handle_click();
 
 #endif

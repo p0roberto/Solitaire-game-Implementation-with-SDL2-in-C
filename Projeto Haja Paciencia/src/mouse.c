@@ -1,3 +1,4 @@
+
 #include "geral.h"
 
 void zerar_mouse(){
@@ -26,10 +27,10 @@ void atualizar_mouse(){
     }
 }
 
-void handle_first_click(){ // Fazer retornar a carta first da lista do mouse
-    if(mouse_list.tamanho) return;
+lista* handle_first_click(){ // Retorna a carta clicada pelo usuário, se for o caso
+    if(mouse_list.tamanho) return NULL;
 
-    // checando se esta clicando em um dos sete monte
+    // Checando se esta clicando em um dos sete monte
     for(int i = 0; i < TAM_P; i++){
         if(!listas[i].tamanho) continue;
         node* at = listas[i].last;
@@ -43,14 +44,13 @@ void handle_first_click(){ // Fazer retornar a carta first da lista do mouse
                     insert(&mouse_list, delete(&listas[i], j)); // Adiciona as cartas selecionadas na lista do mouse
                 }
                 i = TAM_P;
-                return;
+                return &mouse_list;
             }
             at = at->anterior;
         }
     }
 
-
-    //checando se esta clicando no deck 0
+    // Checando se esta clicando no deck 0
     if(is_clicking_on_rect(&deck_pilha[0].base)){
         if(deck_pilha[0].tamanho) swap_deck_animation = true;
         else{
@@ -59,36 +59,38 @@ void handle_first_click(){ // Fazer retornar a carta first da lista do mouse
                 deck_pilha[0].topo->c->virada = true;
             }
         }
+        return NULL;
     }
 
-    //checando se esta clicando no deck 1
+    // Checando se esta clicando no deck 1
     if(is_clicking_on_rect(&deck_pilha[1].base)){
         printf("clicou deck 1\n");
         origem = DECK + 1;
         insert(&mouse_list, pop(&deck_pilha[1]));
-        return;
+        return &mouse_list;
     }
     
-
-    // checando se esta clicando nos naipes
+    // Checando se esta clicando nas pilhas de guardar
     for(int i = 0; i < NAIPES; i++){
         if(is_clicking_on_rect(&naipes_rect[i]) && pilhas_g[i].tamanho){
             origem = 2 + NAIPE + i;
             insert(&mouse_list, pop(&pilhas_g[i]));
-            return;
+            return &mouse_list;
         }
     }
 
     origem = -1;
+    return &mouse_list;
 }
 
-void handle_second_click(){ // Fazer retornar a carta last da lista/pilha clicada
+void handle_second_click(){
     if(mouse_list.tamanho == 0) return;
     if(origem == -1){
         printf("origem = -1\n");
         return;
     }
 
+    /*
     if(!verifica()){
         printf("click invalido!\n");
         printf("origem = %d\n", origem);
@@ -117,27 +119,28 @@ void handle_second_click(){ // Fazer retornar a carta last da lista/pilha clicad
         }
         return;
     }
+    */
 
-    // checando se esta clicando em um dos sete monte
+    // Checando se esta clicando em um dos sete monte
     for(int i = 0; i < TAM_P; i++){       
         SDL_Rect gambiarra = (listas[i].tamanho) ?  listas[i].last->c->rect : listas[i].base;
-        if(is_clicking_on_rect(&gambiarra)){  
-            while(mouse_list.tamanho){
-                insert(&listas[i], delete(&mouse_list, 0));
+        if(is_clicking_on_rect(&gambiarra)){
+            if(verifica_lista(&mouse_list, &listas[i])){  // Chamar a verificar com a carta retornada por click1 e lista clicada agora 
+                while(mouse_list.tamanho){
+                    insert(&listas[i], delete(&mouse_list, 0));
+                }
+                return;
             }
-            return;
         }
     }
 
-
-    //checando se esta clicando no deck
-
-
-    // checando se esta clicando nos naipes
+    // Checando se esta clicando nas pilhas de guardar
     for(int i = 0; i < NAIPES && mouse_list.tamanho == 1; i++){
         if(is_clicking_on_rect(&naipes_rect[i])){
-            while(mouse_list.tamanho){
-                push(&pilhas_g[i], delete(&mouse_list, 0));
+            if(verifica_pilha(&mouse_list, &pilhas_g[i], i)){  // Chamar a verificar com a carta retornada por click1 e pilha clicada agora 
+                while(mouse_list.tamanho){
+                    push(&pilhas_g[i], delete(&mouse_list, 0));
+                }
             }
             return;
         }
@@ -146,9 +149,10 @@ void handle_second_click(){ // Fazer retornar a carta last da lista/pilha clicad
 
 void handle_click(){
     if(!mouse_list.tamanho){ // Se não houver cartas na lista do mouse, é o primeiro clique
-        handle_first_click();
+        handle_first_click(); 
     }
     else{ // Se houver cartas na lista do mouse, é o segundo clique
         handle_second_click();
     }    
 }
+
