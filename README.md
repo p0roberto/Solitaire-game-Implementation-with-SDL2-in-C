@@ -11,12 +11,15 @@ No terminal, execute os comandos:
 git clone https://github.com/p0roberto/Solitaire-game-Implementation-with-SDL2-in-C
 ```
 ```
-cd Projeto\Haja\Paciencia/
+cd Solitaire-game-Implementation-with-SDL2-in-C/
+```
+```
+cd Projeto\ Haja\ Paciencia/
 ```
 ```
 make
 ```
 #### Windows:
-É possível utilizar o WSL para simular um terminal Linux, e apartir disso seguir os comandos acima.
+É possível utilizar o WSL para emular um terminal Linux, e em seguida utilizar os comandos acima.
 
 Baixar WSL: https://learn.microsoft.com/pt-br/windows/wsl/install
