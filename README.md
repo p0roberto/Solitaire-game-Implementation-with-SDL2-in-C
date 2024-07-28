@@ -1,8 +1,23 @@
-Projeto Final da Disciplina "Algoritmos e Estruturas de Dados I (2024/01) - UFG"
+## Projeto Final da Disciplina _Algoritmos e Estruturas de Dados I (2024/01)_
 
-Uma implemetação do jogo de cartas "Paciência", variante "Klondike", utilizando a biblioteca de interface gráfica SDL2 para a linguagem C/C++.
+Uma implemetação do jogo de cartas "Paciência", variante "Klondike", utilizando a biblioteca de interface gráfica SDL2 para a linguagem C/C++. 
 A implementação põe em prática os conteúdos aprendidos ao decorrer da disciplina.
 
 Baixar SDL2: https://wiki.libsdl.org/SDL2/Installation
 
-No Linux, estando dentro da pasta "Projeto Haja Paciência", é possível compilar e executar utilizando o comando "make" no terminal.
+### Como Jogar
+#### Linux: 
+No terminal, execute os comandos: 
+```
+git clone https://github.com/p0roberto/Solitaire-game-Implementation-with-SDL2-in-C
+```
+```
+cd Projeto\Haja\Paciencia/
+```
+```
+make
+```
+#### Windows:
+É possível utilizar o WSL para simular um terminal Linux, e apartir disso seguir os comandos acima.
+
+Baixar WSL: https://learn.microsoft.com/pt-br/windows/wsl/install
