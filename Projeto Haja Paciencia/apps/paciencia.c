@@ -2,31 +2,24 @@
 
 void limpa_memoria(){
     for(int i = 0; i < QUANT_LISTAS; i++){ // Liberar memória das listas
-        if(listas[i].first == NULL) continue; // Verifica se a lista está vazia
-        node *atual = listas[i].first; // Começa pelo primeiro nó
-        node *next;
-        while (atual != NULL){ // Percorre todos os nós da lista
-            next = atual->proximo; // Armazena o próximo nó
-            delete(&listas[i], 0); // Remove a carta do nó atual e libera a memória
-            atual = next; // Move para o próximo nó
+        while(listas[i].tamanho){
+            delete(&listas[i], 0);
         }
     }
 
-    if(mouse_list.first != NULL){ // Liberar memória da mouse_list
-        while(mouse_list.first != NULL){
-            delete(&mouse_list, 0); // Remove o primeiro nó até que a lista esteja vazia
-        }
+    while(mouse_list.tamanho){ // Liberar memória da mouse_list
+        delete(&mouse_list, 0);
     }
 
     for(int i = 0; i < NAIPES; i++){ // Liberar memória das pilhas de guardar
-        while(pilhas_g[i].topo != NULL){ // Verifica se a pilha não está vazia
-            pop(&pilhas_g[i]); // Remove o topo da pilha
+        while(pilhas_g[i].tamanho){
+            pop(&pilhas_g[i]);
         }
     }
 
     for(int i = 0; i < 2; i++){ // Liberar memória das pilhas de compra
-        while(deck_pilha[i].topo != NULL){ // Verifica se a pilha não está vazia
-            pop(&deck_pilha[i]); // Remove o topo da pilha
+        while(deck_pilha[i].tamanho){
+            pop(&deck_pilha[i]);
         }
     }
 
