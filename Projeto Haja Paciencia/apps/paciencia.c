@@ -87,7 +87,7 @@ void update_all(){
     atualizar_pilhas(); // Renderiza as cartas nas pilhas
     atualizar_listas(); // Renderiza as cartas nas listas (sete "pilhas" principais)
     atualizar_mouse(); // Renderiza as cartas do mouse
-    // atualizar_texto();
+    atualizar_texto(); //mostra o timer e os clicks
 }
 
 int main(){
