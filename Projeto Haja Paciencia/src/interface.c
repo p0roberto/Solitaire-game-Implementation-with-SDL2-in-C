@@ -25,6 +25,18 @@ bool InitializeSDL(){  // Inicia o SDL, fazendo coisas como criar janela e aloca
         return false;
     }
 
+    //iniciando a biblioteca de texto
+    if( TTF_Init() == -1 ){
+        printf("TTF_Init Error: %s\n", TTF_GetError());
+        return false;
+    }
+    //carregando a fonte
+    font = TTF_OpenFont(FONT_PATH, FONT_SIZE);
+    if(!font){
+        printf("TTF_OpenFont Error: %s\n", TTF_GetError());
+        return false;
+    }
+
     return true;
 }
 

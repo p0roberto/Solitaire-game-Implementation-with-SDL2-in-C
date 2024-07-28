@@ -9,9 +9,11 @@
 #include "pilha.h"
 #include "mouse.h"
 #include "verifica.h"
+#include "text.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include <stdio.h>
 #include <stdlib.h>
