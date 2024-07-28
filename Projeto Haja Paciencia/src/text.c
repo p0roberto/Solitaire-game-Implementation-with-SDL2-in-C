@@ -23,7 +23,7 @@ void atualizar_texto(){
     char tempo_string[25] = "";
     snprintf(tempo_string, 25, "%.2lf", tempo);
     renderText(tempo_string, texture_time, &timer_rect);
-
+    
     char movimentos_string[25] = "";
     snprintf(movimentos_string, 25, "Clicks: %d", movimentos);
     renderText(movimentos_string, texture_movimentos, &movimentos_rect);
