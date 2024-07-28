@@ -1,6 +1,41 @@
 #include "geral.h"
 
+void limpa_memoria(){
+    for(int i = 0; i < QUANT_LISTAS; i++){ // Liberar memória das listas
+        if(listas[i].first == NULL) continue; // Verifica se a lista está vazia
+        node *atual = listas[i].first; // Começa pelo primeiro nó
+        node *next;
+        while (atual != NULL){ // Percorre todos os nós da lista
+            next = atual->proximo; // Armazena o próximo nó
+            delete(&listas[i], 0); // Remove a carta do nó atual e libera a memória
+            atual = next; // Move para o próximo nó
+        }
+    }
+
+    if(mouse_list.first != NULL){ // Liberar memória da mouse_list
+        while(mouse_list.first != NULL){
+            delete(&mouse_list, 0); // Remove o primeiro nó até que a lista esteja vazia
+        }
+    }
+
+    for(int i = 0; i < NAIPES; i++){ // Liberar memória das pilhas de guardar
+        while(pilhas_g[i].topo != NULL){ // Verifica se a pilha não está vazia
+            pop(&pilhas_g[i]); // Remove o topo da pilha
+        }
+    }
+
+    for(int i = 0; i < 2; i++){ // Liberar memória das pilhas de compra
+        while(deck_pilha[i].topo != NULL){ // Verifica se a pilha não está vazia
+            pop(&deck_pilha[i]); // Remove o topo da pilha
+        }
+    }
+
+    printf("## Mémoria Limpa!!\n");
+}
+
 void load_game(){
+    limpa_memoria(); // Limpa a memória, se for necessário
+
     // Inicializando a textura de tudo
     load_texture_naipes();
     load_texture_deck();
@@ -46,7 +81,7 @@ void load_game(){
         montes[i].w = largura_carta;
         montes[i].h = altura_carta;
         x += distance_between_cards_x + largura_carta;
-    }    
+    }
 
     zerar_pilhas();
     zerar_listas();
@@ -55,12 +90,11 @@ void load_game(){
 }
 
 void update_all(){
-    atualizar_background(); // Renderiza o background das pilhas
+    atualizar_background(); // Renderiza elementos estáticos
     atualizar_pilhas(); // Renderiza as cartas nas pilhas
     atualizar_listas(); // Renderiza as cartas nas listas (sete "pilhas" principais)
     atualizar_mouse(); // Renderiza as cartas do mouse
 }
-
 
 int main(){
     InitializeSDL(); // Inicializa a tela
@@ -70,6 +104,7 @@ int main(){
     load_game(); // Carrega a configuração incial do jogo
 
     while(!quit){ // Loop principal
+
         while(SDL_PollEvent(&event) != 0){ // Se houver interação
             if(event.type == SDL_QUIT){
                 quit = true; // Se apertar sair, quit recebe true
@@ -117,6 +152,7 @@ int main(){
     }
 
     SDL_Quit();
+    limpa_memoria();
 
     return 0;
 }

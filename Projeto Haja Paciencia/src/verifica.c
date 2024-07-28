@@ -14,7 +14,7 @@ bool verifica_lista(lista *l1, lista *l2){
         }
         return false;
     }
-    if(((aux->c->naipe + 1) % 2) != ((aux2->c->naipe + 1) % 2)){ // Verificando se os naipes são de cores opostas
+    if(((aux->c->naipe) % 2) != ((aux2->c->naipe) % 2)){ // Verificando se os naipes são de cores opostas
         if(aux->c->numero == (aux2->c->numero - 1)){ // Verificando se os números são consecutivos
             return true;
         }
