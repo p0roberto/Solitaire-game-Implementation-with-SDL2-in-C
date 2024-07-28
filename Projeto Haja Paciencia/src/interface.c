@@ -1,12 +1,11 @@
 #include "geral.h"
 
 bool InitializeSDL(){  // Inicia o SDL, fazendo coisas como criar janela e alocar o renderer
-    srand(time(NULL));
 
     SDL_Init(SDL_INIT_VIDEO);
 
     window = SDL_CreateWindow(  // Inicializando a janela
-        "CLUDE DE REGATAS DO FLAMENGO", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        "Haja Paciência", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN
     );
 
@@ -22,18 +21,6 @@ bool InitializeSDL(){  // Inicia o SDL, fazendo coisas como criar janela e aloca
     if(!renderer){ // Se não conseguir inicializar o rendererizador
         printf("SDL_CreateRenderer Error: %s\n", SDL_GetError());
         SDL_Quit();
-        return false;
-    }
-
-    //iniciando a biblioteca de texto
-    if( TTF_Init() == -1 ){
-        printf("TTF_Init Error: %s\n", TTF_GetError());
-        return false;
-    }
-    //carregando a fonte
-    font = TTF_OpenFont(FONT_PATH, FONT_SIZE);
-    if(!font){
-        printf("TTF_OpenFont Error: %s\n", TTF_GetError());
         return false;
     }
 

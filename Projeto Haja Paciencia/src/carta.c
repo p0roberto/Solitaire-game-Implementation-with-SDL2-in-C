@@ -61,7 +61,7 @@ void load_texture_cartas(){ // Carrega a textura para a variável de textura dos
     texture_cartas_background = load_image_to_texture("imagens/cartas/background_cartas_geral.png"); // Carrega a textura do background dos montes iniciais
 }
 
-void atualizar_background(){  // Função que renderiza os backgrounds
+void atualizar_background(){  // Função que renderiza elementos estáticos
     
     SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); // Renderiza a imagem de fundo
     SDL_RenderCopy(renderer, texture_button_new_game, NULL, &new_game); // Renderiza o botão New Game

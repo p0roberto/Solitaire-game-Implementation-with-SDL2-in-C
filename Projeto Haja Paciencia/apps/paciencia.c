@@ -78,8 +78,6 @@ void load_game(){
     zerar_listas();
     zerar_mouse();
     iniciar_cartas();
-    tempo_inicial = tempo_atual;
-    movimentos = 0;
 }
 
 void update_all(){
@@ -87,7 +85,6 @@ void update_all(){
     atualizar_pilhas(); // Renderiza as cartas nas pilhas
     atualizar_listas(); // Renderiza as cartas nas listas (sete "pilhas" principais)
     atualizar_mouse(); // Renderiza as cartas do mouse
-    // atualizar_texto();
 }
 
 int main(){
@@ -129,7 +126,6 @@ int main(){
 
       
         if(clicked){ // Se houver click, verificar se é relevante
-            movimentos++;
             if(is_clicking_on_rect(&new_game)){ // Se o usuário clicar no botão New Game, reinicia o jogo
                 load_game();
             }

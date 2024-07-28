@@ -5,7 +5,7 @@ OBJ = ./obj
 SRC = ./src
 
 GTK_FLAGS = `pkg-config --cflags --libs gtk+-3.0` -rdynamic
-SDL_FLAGS = `sdl2-config --cflags --libs` -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
+SDL_FLAGS = `sdl2-config --cflags --libs` -lSDL2 -lSDL2_mixer -lSDL2_image
 MULTIPLE_FLAGS = "-Wl,--allow-multiple-definition"
 
 APP = paciencia
@@ -18,8 +18,7 @@ _src: \
 		$(OBJ)/mouse.o \
 		$(OBJ)/pilha.o \
 		$(OBJ)/lista.o \
-		$(OBJ)/verifica.o \
-		$(OBJ)/text.o
+		$(OBJ)/verifica.o
 
 clean_apps:
 	rm -rf $(BIN)/*
