@@ -88,6 +88,7 @@ void update_all(){
 }
 
 int main(){
+    srand(time(NULL)); // Define a semente para rand()
     InitializeSDL(); // Inicializa a tela
 
     bool quit = false; // Inicializa quit em false
