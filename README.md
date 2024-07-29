@@ -5,7 +5,7 @@ Uma implemetação do jogo de cartas "Paciência", variante Klondike, utilizando
 Baixar SDL2: https://wiki.libsdl.org/SDL2/Installation
 
 ### Como Jogar
-#### Linux: 
+#### Linux: (Recomendado)
 No terminal, execute os comandos: 
 ```
 git clone https://github.com/p0roberto/Solitaire-game-Implementation-with-SDL2-in-C
@@ -20,6 +20,6 @@ cd Projeto\ Haja\ Paciencia/
 make
 ```
 #### Windows:
-É possível utilizar o WSL para emular um terminal Linux, e em seguida utilizar os comandos acima.
+Caso não possua a biblioteca SDL2 instalada, é possível utilizar o WSL para emular um terminal Linux, e em seguida utilizar os comandos acima. É possível que seja mal otimizado.
 
 Baixar WSL: https://learn.microsoft.com/pt-br/windows/wsl/install
