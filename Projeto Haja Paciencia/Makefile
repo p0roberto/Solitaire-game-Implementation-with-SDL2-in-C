@@ -5,7 +5,7 @@ OBJ = ./obj
 SRC = ./src
 
 GTK_FLAGS = `pkg-config --cflags --libs gtk+-3.0` -rdynamic
-SDL_FLAGS = `sdl2-config --cflags --libs` -lSDL2 -lSDL2_mixer -lSDL2_image
+SDL_FLAGS = `sdl2-config --cflags --libs` -lSDL2 -lSDL2_image
 MULTIPLE_FLAGS = "-Wl,--allow-multiple-definition"
 
 APP = paciencia
