@@ -58,7 +58,7 @@ void load_texture_cartas(){ // Carrega a textura para a variável de textura dos
             texture_cartas[i][j] = load_image_to_texture(imagens_cartas_path[i][j]);
         }
     }
-    texture_cartas_background = load_image_to_texture("imagens/cartas/background_cartas_geral.png"); // Carrega a textura do background dos montes iniciais
+    texture_cartas_background = load_image_to_texture("imagens/cartas/background_cartas_geral.png"); // Carrega a textura da parte de trás das cartas
 }
 
 void atualizar_background(){  // Função que renderiza elementos estáticos
