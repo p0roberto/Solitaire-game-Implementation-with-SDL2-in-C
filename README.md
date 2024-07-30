@@ -1,11 +1,11 @@
 ## Projeto Final da Disciplina _Algoritmos e Estruturas de Dados I (2024/01)_
 
-Uma implementação do jogo de cartas "Paciência", variante Klondike, utilizando a biblioteca de interface gráfica SDL2 para a linguagem C/C++. A implementação põe em prática os conteúdos aprendidos ao longo da disciplina.
+Uma implementação do jogo de cartas "Paciência", variante _Klondike_, utilizando a biblioteca de interface gráfica _SDL2_ para a linguagem _C/C++_. A implementação põe em prática os conteúdos aprendidos ao longo da disciplina.
 ****
 ### Requisitos 
 Para compilar e executar o jogo em seu Linux, você precisará ter os seguintes softwares instalados:
 
-**GCC**: O compilador GNU C, que pode ser instalado com o comando:
+**GCC**: O compilador _GNU C_, que pode ser instalado com o comando:
 ```
 sudo apt-get install build-essential
  ```
@@ -35,6 +35,10 @@ cd Projeto\ Haja\ Paciencia/
 make
 ```
 #### Windows:
-Caso não possua a biblioteca SDL2 instalada, é possível utilizar o WSL para emular um terminal Linux, e em seguida utilizar os comandos acima. É possível que seja mal otimizado.
+Caso não possua a biblioteca _SDL2_ instalada, é possível utilizar o _WSL_ para emular um terminal Linux, e em seguida utilizar os comandos acima. É possível que seja mal otimizado.
 
 Baixar WSL: https://learn.microsoft.com/pt-br/windows/wsl/install
+****
+### Contribuições
+
+Aceitamos sugestões e melhorias! Sinta-se à vontade para abrir um _**issue**_ ou um _**pull request**_.
