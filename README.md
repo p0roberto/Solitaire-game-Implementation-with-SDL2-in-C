@@ -2,9 +2,8 @@
 
 Uma implementação do jogo de cartas "Paciência", variante Klondike, utilizando a biblioteca de interface gráfica SDL2 para a linguagem C/C++. A implementação põe em prática os conteúdos aprendidos ao longo da disciplina.
 ****
-### Requisitos
-
-Para compilar e executar o jogo, você precisará ter o seguinte software instalado:
+### Requisitos 
+Para compilar e executar o jogo em seu Linux, você precisará ter os seguintes softwares instalados:
 
 **GCC**: O compilador GNU C, que pode ser instalado com o comando:
 ```
