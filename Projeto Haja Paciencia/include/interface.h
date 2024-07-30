@@ -1,7 +1,7 @@
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__
 
-typedef char bool; // Cria um tipo de várial bool
+typedef char bool; // Cria uma variável do tipo bool, para facilitar a implementação
 const int false = 0; // Facilitar código
 const int true = 1; // Facilitar código
 
