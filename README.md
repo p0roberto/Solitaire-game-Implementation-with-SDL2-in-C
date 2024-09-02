@@ -1,6 +1,6 @@
 ## Projeto Haja Paciência
 
-Uma implementação do jogo de cartas "Paciência", variante _Klondike_, utilizando a biblioteca de interface gráfica _SDL2_ para a linguagem _C/C++_.<br> A implementação põe em prática os conteúdos aprendidos ao longo da disciplina _"Algoritmos e Estruturas de Dados I (2024/01)"_.
+Uma implementação do jogo de cartas "Paciência", variante _Klondike_, utilizando a biblioteca de interface gráfica _SDL2_ para a linguagem _C/C++_. A implementação põe em prática os conteúdos aprendidos ao longo da disciplina _"Algoritmos e Estruturas de Dados I (2024/01)"_.
 ****
 ### Requisitos 
 Para compilar e executar o jogo em seu Linux, você precisará ter os seguintes softwares instalados:
